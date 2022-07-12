@@ -1,0 +1,17 @@
+arr = [15, 5, 20, 10, 35]
+
+s1= sum(arr)//2
+
+row = len(arr)+1
+col = s1+1
+dp = [[False for _ in range(col)] for _ in range(row)]
+
+for i in range(row):
+    dp[i][0] = True
+for i in range(row):
+    for j in range(col):
+        if(arr[i-1]<=j):
+            dp[i][j] = dp[i-1][j] or dp[i-1][j-arr[i-1]]
+        else:
+            dp[i][j] = dp[i-1][j]
+print(dp[-1][-1])
